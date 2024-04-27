@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  fe-react:
+    build:
+      context: ./fe-react
+      dockerfile: Dockerfile
+    depends_on:
+      - be-springboot
+    ports:
+      - "80:80" # Map host port 3000 to container port 80
+
+  be-springboot:
+    build:
+      context: ./be-springboot
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+
+  be-configuration:
+    build:
+      context: ./be-configuration
+      dockerfile: Dockerfile
+    ports:
+      - 8081:80
